@@ -18,7 +18,7 @@ kotlin {
             dependencies {
                 implementation(project(":shared"))
                 implementation(compose.desktop.currentOs)
-                implementation("io.insert-koin:koin-core:3.4.0")
+                implementation(Koin.core)
             }
         }
     }

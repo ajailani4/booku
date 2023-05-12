@@ -104,6 +104,7 @@ android {
         "src/commonMain/resources",
         "src/androidMain/resources"
     )
+    sourceSets["main"].resources.srcDir("src/commonMain/resources")
 
     defaultConfig {
         minSdk = 24
