@@ -6,6 +6,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.ajailani.booku.ui.screen.home.HomeScreen
 import com.ajailani.booku.ui.theme.BookuTheme
 
 @Composable
@@ -15,7 +16,7 @@ fun MainApp() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colors.background
         ) {
-            Text(text = "Hello, Compose Multiplatform!")
+            HomeScreen()
         }
     }
 }

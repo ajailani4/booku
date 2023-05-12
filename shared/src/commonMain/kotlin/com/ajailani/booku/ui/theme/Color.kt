@@ -29,3 +29,6 @@ val dark_surface = Color(0xFF2F2F2F)
 val dark_onSurface = Color(0xFFFFFFFF)
 val dark_error = Color(0xFFCF082B)
 val dark_onError = Color(0xFFFFFFFF)
+
+// Additional
+val Grey = Color(0xFF656D76)
