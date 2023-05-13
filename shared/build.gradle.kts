@@ -56,6 +56,8 @@ kotlin {
             dependencies {
                 api(AndroidX.appCompat)
                 api(AndroidX.coreKtx)
+
+                implementation(Ktor.androidEngine)
             }
         }
         val androidUnitTest by getting
@@ -90,6 +92,8 @@ kotlin {
         val desktopMain by getting {
             dependencies {
                 implementation(compose.desktop.common)
+
+                implementation(Ktor.cioEngine)
             }
         }
     }
