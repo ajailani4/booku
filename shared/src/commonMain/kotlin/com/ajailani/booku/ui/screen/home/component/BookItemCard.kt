@@ -29,7 +29,7 @@ fun BookItem() {
                     shape = MaterialTheme.shapes.medium
                 )
                 .clip(MaterialTheme.shapes.medium),
-            painter = painterResource("image/sapiens_cover.jpg"),
+            painter = painterResource(""),
             contentScale = ContentScale.FillBounds,
             contentDescription = "Book cover"
         )
