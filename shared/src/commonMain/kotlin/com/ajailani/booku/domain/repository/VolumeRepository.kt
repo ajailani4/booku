@@ -5,5 +5,8 @@ import com.ajailani.booku.util.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface VolumeRepository {
-    fun getVolumes(query: String): Flow<Resource<List<Volume>>>
+    fun getVolumes(
+        query: String,
+        maxResults: Int
+    ): Flow<Resource<List<Volume>>>
 }
