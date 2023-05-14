@@ -44,7 +44,10 @@ actual fun VolumeCategorySection(
             volumesState.data?.let { volumes ->
                 LazyRow(contentPadding = PaddingValues(horizontal = 20.dp)) {
                     items(volumes) {
-                        BookItem(volume = it)
+                        BookItem(
+                            volume = it,
+                            onClick = {}
+                        )
                         Spacer(modifier = Modifier.width(20.dp))
                     }
                 }

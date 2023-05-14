@@ -1,11 +1,12 @@
 package com.ajailani.booku.ui.screen.home.component
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -19,31 +20,32 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.ajailani.booku.domain.model.Volume
 import com.ajailani.booku.ui.theme.Grey
+import com.ajailani.booku.util.Constants
 import com.seiko.imageloader.rememberAsyncImagePainter
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
-fun BookItem(volume: Volume) {
-    Column(modifier = Modifier.width(130.dp)) {
+fun BookItem(
+    volume: Volume,
+    onClick: () -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .size(width = 120.dp, height = 245.dp)
+            .clickable { onClick() }
+    ) {
         CompositionLocalProvider {
             Image(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(190.dp)
+                    .height(170.dp)
                     .shadow(
                         elevation = 2.dp,
                         shape = MaterialTheme.shapes.medium
                     )
                     .clip(MaterialTheme.shapes.medium),
-                painter = volume.volumeInfo.imageLinks.let {
-                    if (it != null) {
-                        rememberAsyncImagePainter(volume.volumeInfo.imageLinks!!.thumbnail)
-                    } else {
-                        painterResource("image/default_book_image.jpg")
-                    }
-                },
+                painter = rememberAsyncImagePainter(
+                    volume.volumeInfo.imageLinks?.thumbnail ?: Constants.URL.DEFAULT_BOOK_IMAGE
+                ),
                 contentScale = ContentScale.FillBounds,
                 contentDescription = "Book cover"
             )

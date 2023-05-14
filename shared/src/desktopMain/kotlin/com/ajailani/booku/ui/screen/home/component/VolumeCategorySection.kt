@@ -55,7 +55,10 @@ actual fun VolumeCategorySection(
                         contentPadding = PaddingValues(horizontal = 20.dp)
                     ) {
                         items(volumes) {
-                            BookItem(volume = it)
+                            BookItem(
+                                volume = it,
+                                onClick = {}
+                            )
                             Spacer(modifier = Modifier.width(15.dp))
                         }
                     }

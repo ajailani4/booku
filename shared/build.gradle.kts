@@ -105,11 +105,7 @@ android {
     compileSdk = 33
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    sourceSets["main"].res.srcDirs(
-        "src/commonMain/resources",
-        "src/androidMain/resources"
-    )
-    sourceSets["main"].resources.srcDir("src/commonMain/resources")
+    sourceSets["main"].res.srcDirs("src/commonMain/resources")
 
     defaultConfig {
         minSdk = 24
