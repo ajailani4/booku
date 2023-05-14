@@ -8,9 +8,11 @@ data class Volume(
 data class VolumeInfo(
     val title: String,
     val authors: List<String>,
-    val description: String,
-    val pageCount: Int,
-    val imageLinks: ImageLinks
+    val description: String? = null,
+    val pageCount: Int? = null,
+    val averageRating: Float? = null,
+    val imageLinks: ImageLinks? = null,
+    val language: String
 )
 
 data class ImageLinks(
