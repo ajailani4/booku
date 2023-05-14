@@ -4,4 +4,8 @@ class Constants {
     object Network {
         const val BASE_URL = "https://www.googleapis.com/books/v1/"
     }
+
+    object CoroutineDispatcher {
+        const val DEFAULT_DISPATCHER = "DefaultDispatcher"
+    }
 }
