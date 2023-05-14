@@ -105,6 +105,7 @@ fun HomeScreen(
                     volumesState = businessVolumesState,
                     scaffoldState = scaffoldState
                 )
+                Spacer(modifier = Modifier.height(25.dp))
             }
         }
     }

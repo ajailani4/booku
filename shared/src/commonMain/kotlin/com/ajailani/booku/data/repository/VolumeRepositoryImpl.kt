@@ -2,13 +2,11 @@ package com.ajailani.booku.data.repository
 
 import com.ajailani.booku.data.mapper.toVolume
 import com.ajailani.booku.data.remote.data_source.VolumeRemoteDataSource
-import com.ajailani.booku.data.remote.dto.response.VolumeResponse
-import com.ajailani.booku.domain.model.Volume
+import com.ajailani.booku.data.remote.dto.response.VolumesResponse
 import com.ajailani.booku.domain.repository.VolumeRepository
 import com.ajailani.booku.util.Resource
 import io.ktor.client.call.body
 import io.ktor.http.HttpStatusCode
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class VolumeRepositoryImpl(
@@ -26,7 +24,7 @@ class VolumeRepositoryImpl(
 
             when (response.status) {
                 HttpStatusCode.OK -> {
-                    val responseBody = response.body<VolumeResponse>()
+                    val responseBody = response.body<VolumesResponse>()
                     emit(Resource.Success(responseBody.items.map { volumeDto -> volumeDto.toVolume()}))
                 }
 

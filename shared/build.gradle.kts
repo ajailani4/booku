@@ -31,6 +31,7 @@ kotlin {
                 implementation(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+                api(ImageLoader.imageLoader)
 
                 // Coroutines
                 implementation(Coroutines.native)

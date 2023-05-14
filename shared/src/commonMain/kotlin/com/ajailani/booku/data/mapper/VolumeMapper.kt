@@ -19,7 +19,9 @@ fun VolumeInfoDto.toVolumeInfo() =
         authors = authors,
         description = description,
         pageCount = pageCount,
-        imageLinks = imageLinksDto.toImageLinks()
+        averageRating = averageRating,
+        imageLinks = imageLinksDto?.toImageLinks(),
+        language = language
     )
 
 fun ImageLinksDto.toImageLinks() =

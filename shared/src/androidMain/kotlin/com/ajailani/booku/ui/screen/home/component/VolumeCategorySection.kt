@@ -45,7 +45,7 @@ actual fun VolumeCategorySection(
                 LazyRow(contentPadding = PaddingValues(horizontal = 20.dp)) {
                     items(volumes) {
                         BookItem(volume = it)
-                        Spacer(modifier = Modifier.width(15.dp))
+                        Spacer(modifier = Modifier.width(20.dp))
                     }
                 }
             }
