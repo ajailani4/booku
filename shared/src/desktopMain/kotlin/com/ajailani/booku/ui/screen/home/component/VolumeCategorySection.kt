@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollbarAdapter
 import androidx.compose.material.CircularProgressIndicator
@@ -25,7 +24,7 @@ import com.ajailani.booku.ui.common.UIState
 @Composable
 actual fun VolumeCategorySection(
     title: String,
-    volumesState: UIState<List<Volume>>,
+    volumes: List<Volume>?,
     scaffoldState: ScaffoldState
 ) {
     val lazyListState = rememberLazyListState()
@@ -36,7 +35,7 @@ actual fun VolumeCategorySection(
     )
     Spacer(modifier = Modifier.height(15.dp))
 
-    when (volumesState) {
+    /*when (volumes) {
         UIState.Loading -> {
             Box(
                 modifier = Modifier.fillMaxWidth(),
@@ -47,7 +46,7 @@ actual fun VolumeCategorySection(
         }
 
         is UIState.Success -> {
-            volumesState.data?.let { volumes ->
+            volumes.data?.let { volumes ->
                 Box {
                     LazyRow(
                         modifier = Modifier.padding(bottom = 20.dp),
@@ -74,12 +73,12 @@ actual fun VolumeCategorySection(
 
         is UIState.Error -> {
             LaunchedEffect(scaffoldState) {
-                volumesState.message?.let {
+                volumes.message?.let {
                     scaffoldState.snackbarHostState.showSnackbar(it)
                 }
             }
         }
 
         else -> {}
-    }
+    }*/
 }

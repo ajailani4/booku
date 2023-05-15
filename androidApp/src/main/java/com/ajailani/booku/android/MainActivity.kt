@@ -15,18 +15,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             BookuTheme {
                 val homeViewModel: HomeViewModel = koinViewModel()
-                val fictionVolumesState = homeViewModel.fictionVolumesState
-                val scienceVolumesState = homeViewModel.scienceVolumesState
-                val technologyVolumesState = homeViewModel.technologyVolumesState
-                val socialVolumesState = homeViewModel.socialVolumesState
-                val businessVolumesState = homeViewModel.businessVolumesState
+                val homeUiState = homeViewModel.homeUiState
 
                 HomeScreen(
-                    fictionVolumesState = fictionVolumesState,
-                    scienceVolumesState = scienceVolumesState,
-                    technologyVolumesState = technologyVolumesState,
-                    socialVolumesState = socialVolumesState,
-                    businessVolumesState = businessVolumesState
+                    homeUiState = homeUiState
                 )
             }
         }

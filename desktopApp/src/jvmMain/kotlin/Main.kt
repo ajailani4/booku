@@ -19,13 +19,13 @@ fun main() = application {
             val socialVolumesState = homeViewModel.socialVolumesState
             val businessVolumesState = homeViewModel.businessVolumesState
 
-            HomeScreen(
+            /*HomeScreen(
                 fictionVolumesState = fictionVolumesState,
                 scienceVolumesState = scienceVolumesState,
                 technologyVolumesState = technologyVolumesState,
                 socialVolumesState = socialVolumesState,
                 businessVolumesState = businessVolumesState
-            )
+            )*/
         }
     }
 }
