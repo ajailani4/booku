@@ -38,14 +38,13 @@ actual fun VolumeCategorySection(
             LazyRow(
                 modifier = Modifier.padding(bottom = 20.dp),
                 state = lazyListState,
-                contentPadding = PaddingValues(horizontal = 20.dp)
+                contentPadding = PaddingValues(horizontal = 10.dp)
             ) {
                 items(it) { volume ->
                     BookItem(
                         volume = volume,
                         onClick = {}
                     )
-                    Spacer(modifier = Modifier.width(15.dp))
                 }
             }
             HorizontalScrollbar(

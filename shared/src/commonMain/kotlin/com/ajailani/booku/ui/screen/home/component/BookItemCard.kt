@@ -2,10 +2,12 @@ package com.ajailani.booku.ui.screen.home.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -28,45 +30,47 @@ fun BookItem(
     volume: Volume,
     onClick: () -> Unit
 ) {
-    Column(
+    Box(
         modifier = Modifier
-            .size(width = 120.dp, height = 245.dp)
+            .size(width = 140.dp, height = 245.dp)
             .clickable { onClick() }
     ) {
-        CompositionLocalProvider {
-            Image(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(170.dp)
-                    .shadow(
-                        elevation = 2.dp,
-                        shape = MaterialTheme.shapes.medium
-                    )
-                    .clip(MaterialTheme.shapes.medium),
-                painter = rememberAsyncImagePainter(
-                    volume.volumeInfo.imageLinks?.thumbnail ?: Constants.URL.DEFAULT_BOOK_IMAGE
+        Column(modifier = Modifier.padding(horizontal = 10.dp)) {
+            CompositionLocalProvider {
+                Image(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(170.dp)
+                        .shadow(
+                            elevation = 2.dp,
+                            shape = MaterialTheme.shapes.medium
+                        )
+                        .clip(MaterialTheme.shapes.medium),
+                    painter = rememberAsyncImagePainter(
+                        volume.volumeInfo.imageLinks?.thumbnail ?: Constants.URL.DEFAULT_BOOK_IMAGE
+                    ),
+                    contentScale = ContentScale.FillBounds,
+                    contentDescription = "Book cover"
+                )
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(
+                text = volume.volumeInfo.title,
+                style = MaterialTheme.typography.body1.copy(
+                    fontWeight = FontWeight.SemiBold
                 ),
-                contentScale = ContentScale.FillBounds,
-                contentDescription = "Book cover"
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
+            )
+            Spacer(modifier = Modifier.height(5.dp))
+            Text(
+                text = volume.volumeInfo.authors[0],
+                style = MaterialTheme.typography.body2.copy(
+                    color = Grey
+                ),
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
             )
         }
-        Spacer(modifier = Modifier.height(10.dp))
-        Text(
-            text = volume.volumeInfo.title,
-            style = MaterialTheme.typography.body1.copy(
-                fontWeight = FontWeight.SemiBold
-            ),
-            maxLines = 2,
-            overflow = TextOverflow.Ellipsis
-        )
-        Spacer(modifier = Modifier.height(5.dp))
-        Text(
-            text = volume.volumeInfo.authors[0],
-            style = MaterialTheme.typography.body2.copy(
-                color = Grey
-            ),
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis
-        )
     }
 }
