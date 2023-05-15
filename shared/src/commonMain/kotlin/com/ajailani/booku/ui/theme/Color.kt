@@ -1,5 +1,7 @@
 package com.ajailani.booku.ui.theme
 
+import androidx.compose.material.Colors
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 // Light Theme
@@ -32,3 +34,6 @@ val dark_onError = Color(0xFFFFFFFF)
 
 // Additional
 val Grey = Color(0xFF656D76)
+val Colors.SearchTextFieldGrey: Color
+    @Composable
+    get() = if (isLight) Color(0xFFECECEC) else Color(0xFF2F2F2F)
