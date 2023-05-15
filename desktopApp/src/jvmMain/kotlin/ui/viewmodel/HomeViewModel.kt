@@ -1,11 +1,9 @@
-package viewmodel
+package ui.viewmodel
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import com.ajailani.booku.domain.model.Volume
 import com.ajailani.booku.domain.use_case.GetVolumesUseCase
-import com.ajailani.booku.ui.common.UIState
 import com.ajailani.booku.ui.screen.home.HomeUiState
 import com.ajailani.booku.util.Resource
 import kotlinx.coroutines.CoroutineDispatcher

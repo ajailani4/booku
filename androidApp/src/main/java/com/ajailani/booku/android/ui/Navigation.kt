@@ -29,7 +29,11 @@ fun Navigation(navController: NavHostController) {
         }
 
         composable(route = Screen.VolumeList.route) {
-            VolumeListScreen()
+            VolumeListScreen(
+                onNavigateUp = {
+                    navController.navigateUp()
+                }
+            )
         }
     }
 }
