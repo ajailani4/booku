@@ -13,19 +13,9 @@ fun main() = application {
     Window(onCloseRequest = ::exitApplication) {
         BookuTheme {
             val homeViewModel = DIHelper().homeViewModel
-            val fictionVolumesState = homeViewModel.fictionVolumesState
-            val scienceVolumesState = homeViewModel.scienceVolumesState
-            val technologyVolumesState = homeViewModel.technologyVolumesState
-            val socialVolumesState = homeViewModel.socialVolumesState
-            val businessVolumesState = homeViewModel.businessVolumesState
+            val homeUiState = homeViewModel.homeUiState
 
-            /*HomeScreen(
-                fictionVolumesState = fictionVolumesState,
-                scienceVolumesState = scienceVolumesState,
-                technologyVolumesState = technologyVolumesState,
-                socialVolumesState = socialVolumesState,
-                businessVolumesState = businessVolumesState
-            )*/
+            HomeScreen(homeUiState = homeUiState)
         }
     }
 }

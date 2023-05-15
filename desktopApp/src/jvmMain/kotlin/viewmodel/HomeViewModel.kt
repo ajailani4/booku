@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import com.ajailani.booku.domain.model.Volume
 import com.ajailani.booku.domain.use_case.GetVolumesUseCase
 import com.ajailani.booku.ui.common.UIState
+import com.ajailani.booku.ui.screen.home.HomeUiState
 import com.ajailani.booku.util.Resource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -16,120 +17,98 @@ class HomeViewModel(
     private val getVolumesUseCase: GetVolumesUseCase,
     private val defaultDispatcher: CoroutineDispatcher
 ) {
-    var fictionVolumesState by mutableStateOf<UIState<List<Volume>>>(UIState.Idle)
-        private set
-
-    var scienceVolumesState by mutableStateOf<UIState<List<Volume>>>(UIState.Idle)
-        private set
-
-    var technologyVolumesState by mutableStateOf<UIState<List<Volume>>>(UIState.Idle)
-        private set
-
-    var socialVolumesState by mutableStateOf<UIState<List<Volume>>>(UIState.Idle)
-        private set
-
-    var businessVolumesState by mutableStateOf<UIState<List<Volume>>>(UIState.Idle)
+    var homeUiState by mutableStateOf(HomeUiState())
         private set
 
     init {
-        getFictionVolumes()
-        getScienceVolumes()
-        getTechnologyVolumes()
-        getSocialVolumes()
-        getBusinessVolumes()
+        getVolumesByCategory()
     }
 
-    private fun getFictionVolumes() {
-        fictionVolumesState = UIState.Loading
+    private fun getVolumesByCategory() {
+        homeUiState = homeUiState.copy(loading = true)
 
         CoroutineScope(defaultDispatcher).launch {
-            getVolumesUseCase(
-                query = "subject:fiction",
-                maxResults = 15
-            ).catch {
-                fictionVolumesState = UIState.Error(it.message)
-            }.collect {
-                fictionVolumesState = when (it) {
-                    is Resource.Success -> UIState.Success(it.data)
+            getFictionVolumes()
+            getScienceVolumes()
+            getTechnologyVolumes()
+            getSocialVolumes()
+            getBusinessVolumes()
 
-                    is Resource.Error -> UIState.Error(it.message)
-                }
+            homeUiState = homeUiState.copy(loading = false)
+        }
+    }
+
+    private suspend fun getFictionVolumes() {
+        getVolumesUseCase(
+            query = "subject:fiction",
+            maxResults = 15
+        ).catch {
+            homeUiState = homeUiState.copy(errorMessage = it.message)
+        }.collect {
+            homeUiState = when (it) {
+                is Resource.Success -> homeUiState.copy(fictionVolumes = it.data)
+
+                is Resource.Error -> homeUiState.copy(errorMessage = it.message)
             }
         }
     }
 
-    private fun getScienceVolumes() {
-        scienceVolumesState = UIState.Loading
+    private suspend fun getScienceVolumes() {
+        getVolumesUseCase(
+            query = "subject:science",
+            maxResults = 15
+        ).catch {
+            homeUiState = homeUiState.copy(errorMessage = it.message)
+        }.collect {
+            homeUiState = when (it) {
+                is Resource.Success -> homeUiState.copy(scienceVolumes = it.data)
 
-        CoroutineScope(defaultDispatcher).launch {
-            getVolumesUseCase(
-                query = "subject:science",
-                maxResults = 15
-            ).catch {
-                scienceVolumesState = UIState.Error(it.message)
-            }.collect {
-                scienceVolumesState = when (it) {
-                    is Resource.Success -> UIState.Success(it.data)
-
-                    is Resource.Error -> UIState.Error(it.message)
-                }
+                is Resource.Error -> homeUiState.copy(errorMessage = it.message)
             }
         }
     }
 
-    private fun getTechnologyVolumes() {
-        technologyVolumesState = UIState.Loading
+    private suspend fun getTechnologyVolumes() {
+        getVolumesUseCase(
+            query = "subject:technology",
+            maxResults = 15
+        ).catch {
+            homeUiState = homeUiState.copy(errorMessage = it.message)
+        }.collect {
+            homeUiState = when (it) {
+                is Resource.Success -> homeUiState.copy(technologyVolumes = it.data)
 
-        CoroutineScope(defaultDispatcher).launch {
-            getVolumesUseCase(
-                query = "subject:technology",
-                maxResults = 15
-            ).catch {
-                technologyVolumesState = UIState.Error(it.message)
-            }.collect {
-                technologyVolumesState = when (it) {
-                    is Resource.Success -> UIState.Success(it.data)
-
-                    is Resource.Error -> UIState.Error(it.message)
-                }
+                is Resource.Error -> homeUiState.copy(errorMessage = it.message)
             }
         }
     }
 
-    private fun getSocialVolumes() {
-        socialVolumesState = UIState.Loading
+    private suspend fun getSocialVolumes() {
+        getVolumesUseCase(
+            query = "subject:social",
+            maxResults = 15
+        ).catch {
+            homeUiState = homeUiState.copy(errorMessage = it.message)
+        }.collect {
+            homeUiState = when (it) {
+                is Resource.Success -> homeUiState.copy(socialVolumes = it.data)
 
-        CoroutineScope(defaultDispatcher).launch {
-            getVolumesUseCase(
-                query = "subject:social",
-                maxResults = 15
-            ).catch {
-                socialVolumesState = UIState.Error(it.message)
-            }.collect {
-                socialVolumesState = when (it) {
-                    is Resource.Success -> UIState.Success(it.data)
-
-                    is Resource.Error -> UIState.Error(it.message)
-                }
+                is Resource.Error -> homeUiState.copy(errorMessage = it.message)
             }
         }
     }
 
-    private fun getBusinessVolumes() {
-        businessVolumesState = UIState.Loading
+    private suspend fun getBusinessVolumes() {
+        getVolumesUseCase(
+            query = "subject:business",
+            maxResults = 15
+        ).catch {
+            homeUiState = homeUiState.copy(errorMessage = it.message)
+        }.collect {
+            homeUiState = when (it) {
+                is Resource.Success -> homeUiState.copy(businessVolumes = it.data)
 
-        CoroutineScope(defaultDispatcher).launch {
-            getVolumesUseCase(
-                query = "subject:business",
-                maxResults = 15
-            ).catch {
-                businessVolumesState = UIState.Error(it.message)
-            }.collect {
-                businessVolumesState = when (it) {
-                    is Resource.Success -> UIState.Success(it.data)
-
-                    is Resource.Error -> UIState.Error(it.message)
-                }
+                is Resource.Error -> homeUiState.copy(errorMessage = it.message)
             }
         }
     }

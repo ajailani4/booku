@@ -9,17 +9,15 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollbarAdapter
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ajailani.booku.domain.model.Volume
-import com.ajailani.booku.ui.common.UIState
 
 @Composable
 actual fun VolumeCategorySection(
@@ -35,50 +33,27 @@ actual fun VolumeCategorySection(
     )
     Spacer(modifier = Modifier.height(15.dp))
 
-    /*when (volumes) {
-        UIState.Loading -> {
-            Box(
-                modifier = Modifier.fillMaxWidth(),
-                contentAlignment = Alignment.Center
+    volumes?.let {
+        Box {
+            LazyRow(
+                modifier = Modifier.padding(bottom = 20.dp),
+                state = lazyListState,
+                contentPadding = PaddingValues(horizontal = 20.dp)
             ) {
-                CircularProgressIndicator()
-            }
-        }
-
-        is UIState.Success -> {
-            volumes.data?.let { volumes ->
-                Box {
-                    LazyRow(
-                        modifier = Modifier.padding(bottom = 20.dp),
-                        state = lazyListState,
-                        contentPadding = PaddingValues(horizontal = 20.dp)
-                    ) {
-                        items(volumes) {
-                            BookItem(
-                                volume = it,
-                                onClick = {}
-                            )
-                            Spacer(modifier = Modifier.width(15.dp))
-                        }
-                    }
-                    HorizontalScrollbar(
-                        modifier = Modifier
-                            .align(Alignment.BottomStart)
-                            .fillMaxWidth(),
-                        adapter = rememberScrollbarAdapter(scrollState = lazyListState)
+                items(it) { volume ->
+                    BookItem(
+                        volume = volume,
+                        onClick = {}
                     )
+                    Spacer(modifier = Modifier.width(15.dp))
                 }
             }
+            HorizontalScrollbar(
+                modifier = Modifier
+                    .align(Alignment.BottomStart)
+                    .fillMaxWidth(),
+                adapter = rememberScrollbarAdapter(scrollState = lazyListState)
+            )
         }
-
-        is UIState.Error -> {
-            LaunchedEffect(scaffoldState) {
-                volumes.message?.let {
-                    scaffoldState.snackbarHostState.showSnackbar(it)
-                }
-            }
-        }
-
-        else -> {}
-    }*/
+    }
 }

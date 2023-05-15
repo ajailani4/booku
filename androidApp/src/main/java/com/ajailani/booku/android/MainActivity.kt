@@ -17,9 +17,7 @@ class MainActivity : ComponentActivity() {
                 val homeViewModel: HomeViewModel = koinViewModel()
                 val homeUiState = homeViewModel.homeUiState
 
-                HomeScreen(
-                    homeUiState = homeUiState
-                )
+                HomeScreen(homeUiState = homeUiState)
             }
         }
     }
