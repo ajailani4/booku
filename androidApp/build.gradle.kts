@@ -40,7 +40,10 @@ android {
 
 dependencies {
     implementation(project(":shared"))
+
     implementation(Compose.activity)
+    implementation(Compose.navigation)
+
     implementation(Koin.android)
     implementation(Koin.compose)
 }

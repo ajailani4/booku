@@ -15,7 +15,10 @@ fun main() = application {
             val homeViewModel = DIHelper().homeViewModel
             val homeUiState = homeViewModel.homeUiState
 
-            HomeScreen(homeUiState = homeUiState)
+            HomeScreen(
+                homeUiState = homeUiState,
+                onNavigateToVolumeList = {}
+            )
         }
     }
 }

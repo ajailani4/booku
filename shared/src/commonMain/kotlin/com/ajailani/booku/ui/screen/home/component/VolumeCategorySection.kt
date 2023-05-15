@@ -8,5 +8,6 @@ import com.ajailani.booku.domain.model.Volume
 expect fun VolumeCategorySection(
     title: String,
     volumes: List<Volume>?,
+    onNavigateToVolumeList: () -> Unit,
     scaffoldState: ScaffoldState
 )

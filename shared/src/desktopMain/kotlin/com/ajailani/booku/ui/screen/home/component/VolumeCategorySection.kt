@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -23,13 +22,14 @@ import com.ajailani.booku.domain.model.Volume
 actual fun VolumeCategorySection(
     title: String,
     volumes: List<Volume>?,
+    onNavigateToVolumeList: () -> Unit,
     scaffoldState: ScaffoldState
 ) {
     val lazyListState = rememberLazyListState()
 
     SectionTitle(
         title = title,
-        onSeeMoreClicked = {}
+        onSeeMoreClicked = onNavigateToVolumeList
     )
     Spacer(modifier = Modifier.height(15.dp))
 
