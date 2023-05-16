@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ajailani.booku.domain.model.Volume
+import com.ajailani.booku.ui.common.component.VolumeItem
 
 @Composable
 actual fun VolumeCategorySection(
@@ -26,7 +27,7 @@ actual fun VolumeCategorySection(
     volumes?.let {
         LazyRow(contentPadding = PaddingValues(horizontal = 10.dp)) {
             items(it) { volume ->
-                BookItem(
+                VolumeItem(
                     volume = volume,
                     onClick = {}
                 )

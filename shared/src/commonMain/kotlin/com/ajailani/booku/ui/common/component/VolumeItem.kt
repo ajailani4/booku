@@ -1,4 +1,4 @@
-package com.ajailani.booku.ui.screen.home.component
+package com.ajailani.booku.ui.common.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -26,7 +26,7 @@ import com.ajailani.booku.util.Constants
 import com.seiko.imageloader.rememberAsyncImagePainter
 
 @Composable
-fun BookItem(
+fun VolumeItem(
     volume: Volume,
     onClick: () -> Unit
 ) {
