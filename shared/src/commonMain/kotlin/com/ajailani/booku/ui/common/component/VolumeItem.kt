@@ -19,6 +19,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.ajailani.booku.domain.model.Volume
 import com.ajailani.booku.ui.theme.Grey
@@ -28,11 +29,13 @@ import com.seiko.imageloader.rememberAsyncImagePainter
 @Composable
 fun VolumeItem(
     volume: Volume,
+    width: Dp = 140.dp,
+    height: Dp = 250.dp,
     onClick: () -> Unit
 ) {
     Box(
         modifier = Modifier
-            .size(width = 140.dp, height = 245.dp)
+            .size(width = width, height = height)
             .clickable { onClick() }
     ) {
         Column(modifier = Modifier.padding(horizontal = 10.dp)) {
@@ -40,7 +43,7 @@ fun VolumeItem(
                 Image(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(170.dp)
+                        .weight(2.5f)
                         .shadow(
                             elevation = 2.dp,
                             shape = MaterialTheme.shapes.medium
@@ -54,23 +57,25 @@ fun VolumeItem(
                 )
             }
             Spacer(modifier = Modifier.height(10.dp))
-            Text(
-                text = volume.volumeInfo.title,
-                style = MaterialTheme.typography.body1.copy(
-                    fontWeight = FontWeight.SemiBold
-                ),
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
-            )
-            Spacer(modifier = Modifier.height(5.dp))
-            Text(
-                text = volume.volumeInfo.authors[0],
-                style = MaterialTheme.typography.body2.copy(
-                    color = Grey
-                ),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = volume.volumeInfo.title,
+                    style = MaterialTheme.typography.body1.copy(
+                        fontWeight = FontWeight.SemiBold
+                    ),
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Spacer(modifier = Modifier.height(5.dp))
+                Text(
+                    text = volume.volumeInfo.authors[0],
+                    style = MaterialTheme.typography.body2.copy(
+                        color = Grey
+                    ),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
         }
     }
 }
