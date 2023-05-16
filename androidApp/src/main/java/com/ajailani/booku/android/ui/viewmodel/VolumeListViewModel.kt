@@ -32,7 +32,7 @@ class VolumeListViewModel(
             if (query != null) {
                 getVolumesUseCase(
                     query = query,
-                    maxResults = 15
+                    maxResults = 40
                 ).catch {
                     volumeListUiState = volumeListUiState.copy(
                         loading = false,
