@@ -46,7 +46,7 @@ import com.ajailani.booku.ui.theme.SearchTextFieldGrey
 @Composable
 fun HomeScreen(
     homeUiState: HomeUiState,
-    onNavigateToVolumeList: () -> Unit
+    onNavigateToVolumeList: (String) -> Unit
 ) {
     val scaffoldState = rememberScaffoldState()
 
@@ -89,43 +89,51 @@ fun HomeScreen(
                         }
 
                         loading == false && errorMessage == null -> {
-                            homeUiState.apply {
-                                VolumeCategorySection(
-                                    title = "Fiction",
-                                    volumes = fictionVolumes,
-                                    onNavigateToVolumeList = onNavigateToVolumeList,
-                                    scaffoldState = scaffoldState
-                                )
-                                Spacer(modifier = Modifier.height(25.dp))
-                                VolumeCategorySection(
-                                    title = "Science",
-                                    volumes = scienceVolumes,
-                                    onNavigateToVolumeList = onNavigateToVolumeList,
-                                    scaffoldState = scaffoldState
-                                )
-                                Spacer(modifier = Modifier.height(25.dp))
-                                VolumeCategorySection(
-                                    title = "Technology",
-                                    volumes = technologyVolumes,
-                                    onNavigateToVolumeList = onNavigateToVolumeList,
-                                    scaffoldState = scaffoldState
-                                )
-                                Spacer(modifier = Modifier.height(25.dp))
-                                VolumeCategorySection(
-                                    title = "Social",
-                                    volumes = socialVolumes,
-                                    onNavigateToVolumeList = onNavigateToVolumeList,
-                                    scaffoldState = scaffoldState
-                                )
-                                Spacer(modifier = Modifier.height(25.dp))
-                                VolumeCategorySection(
-                                    title = "Business",
-                                    volumes = businessVolumes,
-                                    onNavigateToVolumeList = onNavigateToVolumeList,
-                                    scaffoldState = scaffoldState
-                                )
-                                Spacer(modifier = Modifier.height(25.dp))
-                            }
+                            VolumeCategorySection(
+                                title = "Fiction",
+                                volumes = fictionVolumes,
+                                onNavigateToVolumeList = {
+                                    onNavigateToVolumeList("subject:fiction")
+                                },
+                                scaffoldState = scaffoldState
+                            )
+                            Spacer(modifier = Modifier.height(25.dp))
+                            VolumeCategorySection(
+                                title = "Science",
+                                volumes = scienceVolumes,
+                                onNavigateToVolumeList = {
+                                    onNavigateToVolumeList("subject:science")
+                                },
+                                scaffoldState = scaffoldState
+                            )
+                            Spacer(modifier = Modifier.height(25.dp))
+                            VolumeCategorySection(
+                                title = "Technology",
+                                volumes = technologyVolumes,
+                                onNavigateToVolumeList = {
+                                    onNavigateToVolumeList("subject:technology")
+                                },
+                                scaffoldState = scaffoldState
+                            )
+                            Spacer(modifier = Modifier.height(25.dp))
+                            VolumeCategorySection(
+                                title = "Social",
+                                volumes = socialVolumes,
+                                onNavigateToVolumeList = {
+                                    onNavigateToVolumeList("subject:social")
+                                },
+                                scaffoldState = scaffoldState
+                            )
+                            Spacer(modifier = Modifier.height(25.dp))
+                            VolumeCategorySection(
+                                title = "Business",
+                                volumes = businessVolumes,
+                                onNavigateToVolumeList = {
+                                    onNavigateToVolumeList("subject:business")
+                                },
+                                scaffoldState = scaffoldState
+                            )
+                            Spacer(modifier = Modifier.height(25.dp))
                         }
 
                         errorMessage != null -> {
