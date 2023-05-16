@@ -64,9 +64,7 @@ fun VolumeListScreen(
             when {
                 loading == true -> {
                     Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(top = 100.dp),
+                        modifier = Modifier.fillMaxSize(),
                         contentAlignment = Alignment.Center
                     ) {
                         CircularProgressIndicator()
@@ -76,14 +74,15 @@ fun VolumeListScreen(
                 loading == false && errorMessage == null -> {
                     volumes?.let {
                         LazyVerticalGrid(
-                            columns = GridCells.Adaptive(minSize = 140.dp),
-                            contentPadding = PaddingValues(20.dp),
-                            verticalArrangement = Arrangement.spacedBy(20.dp),
-                            horizontalArrangement = Arrangement.spacedBy(10.dp)
+                            columns = GridCells.Adaptive(minSize = 110.dp),
+                            contentPadding = PaddingValues(10.dp),
+                            verticalArrangement = Arrangement.spacedBy(20.dp)
                         ) {
                             items(it) { volume ->
                                 VolumeItem(
                                     volume = volume,
+                                    width = 120.dp,
+                                    height = 225.dp,
                                     onClick = {}
                                 )
                             }
