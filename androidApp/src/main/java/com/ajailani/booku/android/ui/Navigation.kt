@@ -44,11 +44,17 @@ fun Navigation(navController: NavHostController) {
             )
         ) {
             val volumeListViewModel = koinViewModel<VolumeListViewModel>()
-            val query = volumeListViewModel.query
+            var query = volumeListViewModel.query
             val volumeUiState = volumeListViewModel.volumeListUiState
 
+            query!!.split(":").let {
+                if (it[0] == "subject") {
+                    query = it[1].replaceFirstChar(Char::titlecase)
+                }
+            }
+
             VolumeListScreen(
-                title = query!!.split(":")[1].replaceFirstChar(Char::titlecase),
+                title = query!!,
                 volumeListUiState = volumeUiState,
                 onNavigateUp = {
                     navController.navigateUp()
