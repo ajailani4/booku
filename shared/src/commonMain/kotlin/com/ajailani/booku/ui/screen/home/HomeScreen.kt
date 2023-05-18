@@ -50,7 +50,8 @@ import com.ajailani.booku.ui.theme.SearchTextFieldGrey
 fun HomeScreen(
     onEvent: (HomeEvent) -> Unit,
     homeUiState: HomeUiState,
-    onNavigateToVolumeList: (String) -> Unit
+    onNavigateToVolumeList: (String) -> Unit,
+    onNavigateToVolumeDetail: (String) -> Unit
 ) {
     val scaffoldState = rememberScaffoldState()
 
@@ -102,48 +103,53 @@ fun HomeScreen(
 
                         loading == false && errorMessage == null -> {
                             VolumeCategorySection(
+                                scaffoldState = scaffoldState,
                                 title = "Fiction",
                                 volumes = fictionVolumes,
-                                onNavigateToVolumeList = {
+                                onSeeMoreClicked = {
                                     onNavigateToVolumeList("subject:fiction")
                                 },
-                                scaffoldState = scaffoldState
+                                onVolumeItemClicked = onNavigateToVolumeDetail
                             )
                             Spacer(modifier = Modifier.height(25.dp))
                             VolumeCategorySection(
+                                scaffoldState = scaffoldState,
                                 title = "Science",
                                 volumes = scienceVolumes,
-                                onNavigateToVolumeList = {
+                                onSeeMoreClicked = {
                                     onNavigateToVolumeList("subject:science")
                                 },
-                                scaffoldState = scaffoldState
+                                onVolumeItemClicked = onNavigateToVolumeDetail
                             )
                             Spacer(modifier = Modifier.height(25.dp))
                             VolumeCategorySection(
+                                scaffoldState = scaffoldState,
                                 title = "Technology",
                                 volumes = technologyVolumes,
-                                onNavigateToVolumeList = {
+                                onSeeMoreClicked = {
                                     onNavigateToVolumeList("subject:technology")
                                 },
-                                scaffoldState = scaffoldState
+                                onVolumeItemClicked = onNavigateToVolumeDetail
                             )
                             Spacer(modifier = Modifier.height(25.dp))
                             VolumeCategorySection(
+                                scaffoldState = scaffoldState,
                                 title = "Social",
                                 volumes = socialVolumes,
-                                onNavigateToVolumeList = {
+                                onSeeMoreClicked = {
                                     onNavigateToVolumeList("subject:social")
                                 },
-                                scaffoldState = scaffoldState
+                                onVolumeItemClicked = onNavigateToVolumeDetail
                             )
                             Spacer(modifier = Modifier.height(25.dp))
                             VolumeCategorySection(
+                                scaffoldState = scaffoldState,
                                 title = "Business",
                                 volumes = businessVolumes,
-                                onNavigateToVolumeList = {
+                                onSeeMoreClicked = {
                                     onNavigateToVolumeList("subject:business")
                                 },
-                                scaffoldState = scaffoldState
+                                onVolumeItemClicked = onNavigateToVolumeDetail
                             )
                             Spacer(modifier = Modifier.height(25.dp))
                         }

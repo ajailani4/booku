@@ -5,5 +5,5 @@ import com.ajailani.booku.domain.model.VolumeInfo
 data class VolumeDetailUiState(
     val loading: Boolean? = false,
     val errorMessage: String? = null,
-    val volumeInfo: VolumeInfo
+    val volumeInfo: VolumeInfo? = null
 )

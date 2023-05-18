@@ -3,41 +3,38 @@ package ui.viewmodel
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import com.ajailani.booku.domain.use_case.GetVolumesUseCase
-import com.ajailani.booku.ui.screen.volume_list.VolumeListUiState
+import com.ajailani.booku.domain.use_case.GetVolumeDetailUseCase
+import com.ajailani.booku.ui.screen.volume_detail.VolumeDetailUiState
 import com.ajailani.booku.util.Resource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
-class VolumeListViewModel(
-    private val getVolumesUseCase: GetVolumesUseCase,
+class VolumeDetailViewModel(
+    private val getVolumeDetailUseCase: GetVolumeDetailUseCase,
     private val defaultDispatcher: CoroutineDispatcher
 ) {
-    var volumeListUiState by mutableStateOf(VolumeListUiState())
+    var volumeDetailUiState by mutableStateOf(VolumeDetailUiState())
         private set
 
-    fun getVolumes(query: String) {
-        volumeListUiState = volumeListUiState.copy(loading = true)
+    fun getVolumeDetail(id: String) {
+        volumeDetailUiState = volumeDetailUiState.copy(loading = true)
 
         CoroutineScope(defaultDispatcher).launch {
-            getVolumesUseCase(
-                query = query,
-                maxResults = 40
-            ).catch {
-                volumeListUiState = volumeListUiState.copy(
+            getVolumeDetailUseCase(id).catch {
+                volumeDetailUiState = volumeDetailUiState.copy(
                     loading = false,
                     errorMessage = it.message
                 )
             }.collect {
-                volumeListUiState = when (it) {
-                    is Resource.Success -> volumeListUiState.copy(
+                volumeDetailUiState = when (it) {
+                    is Resource.Success -> volumeDetailUiState.copy(
                         loading = false,
-                        volumes = it.data ?: emptyList()
+                        volumeInfo = it.data
                     )
 
-                    is Resource.Error -> volumeListUiState.copy(
+                    is Resource.Error -> volumeDetailUiState.copy(
                         loading = false,
                         errorMessage = it.message
                     )

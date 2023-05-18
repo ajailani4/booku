@@ -14,21 +14,22 @@ import com.ajailani.booku.ui.common.component.VolumeItem
 
 @Composable
 actual fun VolumeCategorySection(
+    scaffoldState: ScaffoldState,
     title: String,
     volumes: List<Volume>,
-    onNavigateToVolumeList: () -> Unit,
-    scaffoldState: ScaffoldState
+    onSeeMoreClicked: () -> Unit,
+    onVolumeItemClicked: (String) -> Unit
 ) {
     SectionTitle(
         title = title,
-        onSeeMoreClicked = onNavigateToVolumeList
+        onSeeMoreClicked = onSeeMoreClicked
     )
     Spacer(modifier = Modifier.height(15.dp))
     LazyRow(contentPadding = PaddingValues(horizontal = 10.dp)) {
         items(volumes) {
             VolumeItem(
                 volume = it,
-                onClick = {}
+                onClick = { onVolumeItemClicked(it.id) }
             )
         }
     }

@@ -6,8 +6,9 @@ import com.ajailani.booku.domain.model.Volume
 
 @Composable
 expect fun VolumeCategorySection(
+    scaffoldState: ScaffoldState,
     title: String,
     volumes: List<Volume>,
-    onNavigateToVolumeList: () -> Unit,
-    scaffoldState: ScaffoldState
+    onSeeMoreClicked: () -> Unit,
+    onVolumeItemClicked: (String) -> Unit
 )

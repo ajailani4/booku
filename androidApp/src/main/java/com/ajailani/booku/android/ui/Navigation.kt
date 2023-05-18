@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.ajailani.booku.android.ui.viewmodel.HomeViewModel
+import com.ajailani.booku.android.ui.viewmodel.VolumeDetailViewModel
 import com.ajailani.booku.android.ui.viewmodel.VolumeListViewModel
 import com.ajailani.booku.ui.screen.home.HomeScreen
 import com.ajailani.booku.ui.screen.volume_detail.VolumeDetailScreen
@@ -32,6 +33,9 @@ fun Navigation(navController: NavHostController) {
                 homeUiState = homeUiState,
                 onNavigateToVolumeList = {
                     navController.navigate(Screen.VolumeList.route + "?query=$it")
+                },
+                onNavigateToVolumeDetail = {
+                    navController.navigate(Screen.VolumeDetail.route + "?id=$it")
                 }
             )
         }
@@ -61,12 +65,28 @@ fun Navigation(navController: NavHostController) {
                 volumeListUiState = volumeUiState,
                 onNavigateUp = {
                     navController.navigateUp()
+                },
+                onNavigateToVolumeDetail = {
+                    navController.navigate(Screen.VolumeDetail.route + "?id=$it")
                 }
             )
         }
 
-        composable(route = Screen.VolumeDetail.route) {
+        composable(
+            route = Screen.VolumeDetail.route + "?id={id}",
+            arguments = listOf(
+                navArgument("id") {
+                    type = NavType.StringType
+                    nullable = true
+                    defaultValue = null
+                }
+            )
+        ) {
+            val volumeDetailViewModel = koinViewModel<VolumeDetailViewModel>()
+            val volumeDetailUiState = volumeDetailViewModel.volumeDetailUiState
+
             VolumeDetailScreen(
+                volumeDetailUiState = volumeDetailUiState,
                 onNavigateUp = {
                     navController.navigateUp()
                 }
