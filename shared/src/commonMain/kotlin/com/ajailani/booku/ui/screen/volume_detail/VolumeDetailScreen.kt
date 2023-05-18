@@ -77,7 +77,7 @@ fun VolumeDetailScreen(
                         Box(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .padding(top = 180.dp),
+                                .padding(top = 200.dp),
                             contentAlignment = Alignment.Center
                         ) {
                             CircularProgressIndicator()
@@ -93,7 +93,7 @@ fun VolumeDetailScreen(
                                 ) {
                                     Image(
                                         modifier = Modifier
-                                            .size(width = 200.dp, height = 270.dp)
+                                            .size(width = 140.dp, height = 200.dp)
                                             .clip(MaterialTheme.shapes.large),
                                         painter = rememberAsyncImagePainter(
                                             volumeInfo.imageLinks?.thumbnail
