@@ -14,6 +14,7 @@ object NavArgument {
     fun getArguments(route: String) =
         navArguments.find { it.first == route }?.second
 
-    fun removeArguments(route: String) =
+    fun removeArguments(route: String) {
         navArguments.remove(navArguments.find { it.first == route })
+    }
 }
