@@ -10,6 +10,7 @@ import androidx.navigation.navArgument
 import com.ajailani.booku.android.ui.viewmodel.HomeViewModel
 import com.ajailani.booku.android.ui.viewmodel.VolumeListViewModel
 import com.ajailani.booku.ui.screen.home.HomeScreen
+import com.ajailani.booku.ui.screen.volume_detail.VolumeDetailScreen
 import com.ajailani.booku.ui.screen.volume_list.VolumeListScreen
 import com.ajailani.booku.util.Screen
 import org.koin.androidx.compose.koinViewModel
@@ -58,6 +59,14 @@ fun Navigation(navController: NavHostController) {
             VolumeListScreen(
                 title = query!!,
                 volumeListUiState = volumeUiState,
+                onNavigateUp = {
+                    navController.navigateUp()
+                }
+            )
+        }
+
+        composable(route = Screen.VolumeDetail.route) {
+            VolumeDetailScreen(
                 onNavigateUp = {
                     navController.navigateUp()
                 }

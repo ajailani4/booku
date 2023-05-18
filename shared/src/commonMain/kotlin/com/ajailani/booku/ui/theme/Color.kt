@@ -34,6 +34,7 @@ val dark_onError = Color(0xFFFFFFFF)
 
 // Additional
 val Grey = Color(0xFF656D76)
+val Grey2 = Color(0xFF656D76)
 val Colors.SearchTextFieldGrey: Color
     @Composable
     get() = if (isLight) Color(0xFFECECEC) else Color(0xFF2F2F2F)
