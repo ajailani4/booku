@@ -7,5 +7,10 @@ class VolumeService(private val httpClient: HttpClient) {
     suspend fun getVolumes(
         query: String,
         maxResults: Int
-    ) = httpClient.get("volumes?q=$query&maxResults=$maxResults")
+    ) = httpClient.get("volumes") {
+        url {
+            parameters.append("q", query)
+            parameters.append("maxResults", maxResults.toString())
+        }
+    }
 }
