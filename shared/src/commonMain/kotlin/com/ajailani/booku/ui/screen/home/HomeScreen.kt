@@ -50,7 +50,8 @@ import com.ajailani.booku.ui.theme.SearchTextFieldGrey
 fun HomeScreen(
     onEvent: (HomeEvent) -> Unit,
     homeUiState: HomeUiState,
-    onNavigateToVolumeList: (String) -> Unit
+    onNavigateToVolumeList: (String) -> Unit,
+    onNavigateToVolumeDetail: (String) -> Unit
 ) {
     val scaffoldState = rememberScaffoldState()
 
@@ -108,6 +109,7 @@ fun HomeScreen(
                                 onSeeMoreClicked = {
                                     onNavigateToVolumeList("subject:fiction")
                                 },
+                                onVolumeItemClicked = onNavigateToVolumeDetail
                             )
                             Spacer(modifier = Modifier.height(25.dp))
                             VolumeCategorySection(
@@ -117,6 +119,7 @@ fun HomeScreen(
                                 onSeeMoreClicked = {
                                     onNavigateToVolumeList("subject:science")
                                 },
+                                onVolumeItemClicked = onNavigateToVolumeDetail
                             )
                             Spacer(modifier = Modifier.height(25.dp))
                             VolumeCategorySection(
@@ -126,6 +129,7 @@ fun HomeScreen(
                                 onSeeMoreClicked = {
                                     onNavigateToVolumeList("subject:technology")
                                 },
+                                onVolumeItemClicked = onNavigateToVolumeDetail
                             )
                             Spacer(modifier = Modifier.height(25.dp))
                             VolumeCategorySection(
@@ -135,6 +139,7 @@ fun HomeScreen(
                                 onSeeMoreClicked = {
                                     onNavigateToVolumeList("subject:social")
                                 },
+                                onVolumeItemClicked = onNavigateToVolumeDetail
                             )
                             Spacer(modifier = Modifier.height(25.dp))
                             VolumeCategorySection(
@@ -144,6 +149,7 @@ fun HomeScreen(
                                 onSeeMoreClicked = {
                                     onNavigateToVolumeList("subject:business")
                                 },
+                                onVolumeItemClicked = onNavigateToVolumeDetail
                             )
                             Spacer(modifier = Modifier.height(25.dp))
                         }

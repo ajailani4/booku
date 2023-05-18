@@ -33,7 +33,8 @@ import com.ajailani.booku.ui.common.component.VolumeItem
 fun VolumeListScreen(
     title: String,
     volumeListUiState: VolumeListUiState,
-    onNavigateUp: () -> Unit
+    onNavigateUp: () -> Unit,
+    onNavigateToVolumeDetail: (String) -> Unit
 ) {
     val scaffoldState = rememberScaffoldState()
 
@@ -82,7 +83,7 @@ fun VolumeListScreen(
                                 volume = it,
                                 width = 110.dp,
                                 height = 220.dp,
-                                onClick = {}
+                                onClick = { onNavigateToVolumeDetail(it.id) }
                             )
                         }
                     }
