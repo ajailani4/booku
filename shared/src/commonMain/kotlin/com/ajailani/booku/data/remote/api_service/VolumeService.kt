@@ -13,4 +13,6 @@ class VolumeService(private val httpClient: HttpClient) {
             parameters.append("maxResults", maxResults.toString())
         }
     }
+
+    suspend fun getVolumeDetail(id: String) = httpClient.get("volumes/$id")
 }

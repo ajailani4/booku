@@ -10,4 +10,6 @@ class VolumeRemoteDataSource(private val volumeService: VolumeService) {
         query = query,
         maxResults = maxResults
     )
+
+    suspend fun getVolumeDetail(id: String) = volumeService.getVolumeDetail(id)
 }
