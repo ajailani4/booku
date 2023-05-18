@@ -4,6 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.ajailani.booku.domain.use_case.GetVolumesUseCase
+import com.ajailani.booku.ui.screen.home.HomeEvent
 import com.ajailani.booku.ui.screen.home.HomeUiState
 import com.ajailani.booku.util.Resource
 import kotlinx.coroutines.CoroutineDispatcher
@@ -20,6 +21,14 @@ class HomeViewModel(
 
     init {
         getVolumesByCategory()
+    }
+
+    fun onEvent(event: HomeEvent) {
+        when (event) {
+            is HomeEvent.OnSearchQueryChanged -> {
+                homeUiState = homeUiState.copy(searchQuery = event.searchQuery)
+            }
+        }
     }
 
     private fun getVolumesByCategory() {

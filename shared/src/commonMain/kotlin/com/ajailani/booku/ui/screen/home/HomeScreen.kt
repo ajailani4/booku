@@ -35,6 +35,9 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
@@ -175,7 +178,15 @@ private fun SearchTextField(
                 shape = CircleShape
             )
             .fillMaxWidth()
-            .onFocusChanged { isFocused = it.isFocused },
+            .onFocusChanged { isFocused = it.isFocused }
+            .onKeyEvent {
+                if (it.key == Key.Enter) {
+                    onSearched()
+                    true
+                } else {
+                    false
+                }
+            },
         value = searchQuery,
         onValueChange = onSearchQueryChanged,
         singleLine = true,
@@ -205,7 +216,7 @@ private fun SearchTextField(
                 if (searchQuery.isEmpty() && !isFocused) {
                     Text(
                         text = "Search Books",
-                        color = MaterialTheme.colors.onBackground
+                        color = Grey
                     )
                 }
 

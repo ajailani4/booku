@@ -16,9 +16,11 @@ fun NavHost(
         when (screen) {
             Screen.Home.route -> {
                 val homeViewModel = DIHelper().homeViewModel
+                val onEvent = homeViewModel::onEvent
                 val homeUiState = homeViewModel.homeUiState
 
                 HomeScreen(
+                    onEvent = onEvent,
                     homeUiState = homeUiState,
                     onNavigateToVolumeList = {
                         navController.navigate(
