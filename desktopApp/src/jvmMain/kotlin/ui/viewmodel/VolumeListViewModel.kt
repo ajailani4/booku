@@ -6,12 +6,10 @@ import androidx.compose.runtime.setValue
 import com.ajailani.booku.domain.use_case.GetVolumesUseCase
 import com.ajailani.booku.ui.screen.volume_list.VolumeListUiState
 import com.ajailani.booku.util.Resource
-import com.ajailani.booku.util.Screen
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
-import ui.navigation.NavArgument
 
 class VolumeListViewModel(
     private val getVolumesUseCase: GetVolumesUseCase,

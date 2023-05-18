@@ -32,7 +32,7 @@ fun NavHost(
             }
 
             Screen.VolumeList.route -> {
-                val query = NavArgument.getArguments(Screen.VolumeList.route)?.get("query")
+                val query = NavArgumentController.getArguments(Screen.VolumeList.route)?.get("query")
                 val volumeListViewModel = DIHelper().volumeListViewModel
                 val volumeListUiState = volumeListViewModel.volumeListUiState
 

@@ -5,7 +5,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import com.ajailani.booku.util.Screen
 
 class NavController(
     private val startDestination: String
@@ -18,9 +17,11 @@ class NavController(
     fun navigate(route: String, arguments: Map<String, String>? = null) {
         if (route != currentScreen && route != startDestination) {
             if (!arguments.isNullOrEmpty()) {
-                NavArgument.putArguments(
-                    route = route,
-                    arguments = arguments
+                NavArgumentController.putArguments(
+                    NavArgument(
+                        route = route,
+                        arguments = arguments
+                    )
                 )
             }
 
@@ -31,7 +32,7 @@ class NavController(
 
     fun navigateBack() {
         if (backStackScreens.isNotEmpty()) {
-            NavArgument.removeArguments(currentScreen)
+            NavArgumentController.removeArguments(currentScreen)
 
             backStackScreens.last().let {
                 currentScreen = it
