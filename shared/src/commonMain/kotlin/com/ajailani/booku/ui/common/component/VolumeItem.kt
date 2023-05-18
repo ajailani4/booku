@@ -39,23 +39,21 @@ fun VolumeItem(
             .clickable { onClick() }
     ) {
         Column(modifier = Modifier.padding(horizontal = 10.dp)) {
-            CompositionLocalProvider {
-                Image(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(2.5f)
-                        .shadow(
-                            elevation = 2.dp,
-                            shape = MaterialTheme.shapes.medium
-                        )
-                        .clip(MaterialTheme.shapes.medium),
-                    painter = rememberAsyncImagePainter(
-                        volume.volumeInfo.imageLinks?.thumbnail ?: Constants.URL.DEFAULT_BOOK_IMAGE
-                    ),
-                    contentScale = ContentScale.FillBounds,
-                    contentDescription = "Book cover"
-                )
-            }
+            Image(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(2.5f)
+                    .shadow(
+                        elevation = 2.dp,
+                        shape = MaterialTheme.shapes.medium
+                    )
+                    .clip(MaterialTheme.shapes.medium),
+                painter = rememberAsyncImagePainter(
+                    volume.volumeInfo.imageLinks?.thumbnail ?: Constants.URL.DEFAULT_BOOK_IMAGE
+                ),
+                contentScale = ContentScale.FillBounds,
+                contentDescription = "Volume cover"
+            )
             Spacer(modifier = Modifier.height(10.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Text(
