@@ -2,6 +2,7 @@ package ui.navigation
 
 import androidx.compose.animation.Crossfade
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import com.ajailani.booku.ui.screen.home.HomeScreen
 import com.ajailani.booku.ui.screen.volume_list.VolumeListScreen
 import com.ajailani.booku.util.Screen
@@ -20,17 +21,38 @@ fun NavHost(
                 HomeScreen(
                     homeUiState = homeUiState,
                     onNavigateToVolumeList = {
-                        navController.navigate(Screen.VolumeList.route)
+                        navController.navigate(
+                            route = Screen.VolumeList.route,
+                            arguments = mapOf("query" to it)
+                        )
                     }
                 )
             }
 
             Screen.VolumeList.route -> {
-                VolumeListScreen(
-                    onNavigateUp = {
-                        navController.navigateBack()
+                val query = NavArgument.getArguments(Screen.VolumeList.route)?.get("query")
+                val volumeListViewModel = DIHelper().volumeListViewModel
+                val volumeListUiState = volumeListViewModel.volumeListUiState
+
+                if (query != null) {
+                    LaunchedEffect(query) {
+                        volumeListViewModel.getVolumes(query)
                     }
-                )
+
+                    VolumeListScreen(
+                        title = query.split(":").let {
+                            if (it[0] == "subject") {
+                                it[1].replaceFirstChar(Char::titlecase)
+                            } else {
+                                query
+                            }
+                        },
+                        volumeListUiState = volumeListUiState,
+                        onNavigateUp = {
+                            navController.navigateBack()
+                        }
+                    )
+                }
             }
         }
     }
