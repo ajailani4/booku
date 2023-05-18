@@ -5,6 +5,7 @@ import com.ajailani.booku.domain.model.Volume
 data class HomeUiState(
     val loading: Boolean? = false,
     val errorMessage: String? = null,
+    val searchQuery: String = "",
     val fictionVolumes: List<Volume> = emptyList(),
     val scienceVolumes: List<Volume> = emptyList(),
     val technologyVolumes: List<Volume> = emptyList(),

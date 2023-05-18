@@ -45,6 +45,7 @@ import com.ajailani.booku.ui.theme.SearchTextFieldGrey
 
 @Composable
 fun HomeScreen(
+    onEvent: (HomeEvent) -> Unit,
     homeUiState: HomeUiState,
     onNavigateToVolumeList: (String) -> Unit
 ) {
@@ -71,7 +72,15 @@ fun HomeScreen(
                         color = Grey
                     )
                     Spacer(modifier = Modifier.height(20.dp))
-                    SearchTextField()
+                    SearchTextField(
+                        searchQuery = homeUiState.searchQuery,
+                        onSearchQueryChanged = {
+                            onEvent(HomeEvent.OnSearchQueryChanged(it))
+                        },
+                        onSearched = {
+                            onNavigateToVolumeList(homeUiState.searchQuery)
+                        }
+                    )
                 }
                 Spacer(modifier = Modifier.height(10.dp))
 
@@ -150,7 +159,11 @@ fun HomeScreen(
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-private fun SearchTextField() {
+private fun SearchTextField(
+    searchQuery: String,
+    onSearchQueryChanged: (String) -> Unit,
+    onSearched: () -> Unit
+) {
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
     var isFocused by remember { mutableStateOf(false) }
@@ -163,8 +176,8 @@ private fun SearchTextField() {
             )
             .fillMaxWidth()
             .onFocusChanged { isFocused = it.isFocused },
-        value = "",
-        onValueChange = {},
+        value = searchQuery,
+        onValueChange = onSearchQueryChanged,
         singleLine = true,
         cursorBrush = SolidColor(MaterialTheme.colors.primary),
         textStyle = MaterialTheme.typography.body1.copy(
@@ -174,6 +187,8 @@ private fun SearchTextField() {
         keyboardActions = KeyboardActions(onSearch = {
             focusManager.clearFocus()
             keyboardController?.hide()
+
+            onSearched()
         }),
         decorationBox = { innerTextField ->
             Row(
@@ -187,16 +202,12 @@ private fun SearchTextField() {
                 )
                 Spacer(modifier = Modifier.width(12.dp))
 
-                /*if (searchQuery.isEmpty() && !isFocused) {
+                if (searchQuery.isEmpty() && !isFocused) {
                     Text(
                         text = "Search Books",
                         color = MaterialTheme.colors.onBackground
                     )
-                }*/
-                Text(
-                    text = "Search Books",
-                    color = Grey
-                )
+                }
 
                 innerTextField()
             }

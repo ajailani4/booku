@@ -23,9 +23,11 @@ fun Navigation(navController: NavHostController) {
     ) {
         composable(route = Screen.Home.route) {
             val homeViewModel = koinViewModel<HomeViewModel>()
+            val onEvent = homeViewModel::onEvent
             val homeUiState = homeViewModel.homeUiState
 
             HomeScreen(
+                onEvent = onEvent,
                 homeUiState = homeUiState,
                 onNavigateToVolumeList = {
                     navController.navigate(Screen.VolumeList.route + "?query=$it")
