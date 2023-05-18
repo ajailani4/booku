@@ -41,6 +41,7 @@ import com.seiko.imageloader.rememberAsyncImagePainter
 
 @Composable
 fun VolumeDetailScreen(
+    volumeDetailUiState: VolumeDetailUiState,
     onNavigateUp: () -> Unit
 ) {
     val scaffoldState = rememberScaffoldState()
@@ -68,106 +69,117 @@ fun VolumeDetailScreen(
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
         ) {
-            Column(modifier = Modifier.padding(20.dp)) {
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Image(
-                        modifier = Modifier
-                            .size(width = 200.dp, height = 270.dp)
-                            .clip(MaterialTheme.shapes.large),
-                        painter = rememberAsyncImagePainter(Constants.URL.DEFAULT_BOOK_IMAGE),
-                        contentScale = ContentScale.FillBounds,
-                        contentDescription = "Volume cover"
-                    )
-                    Spacer(modifier = Modifier.height(20.dp))
-                    Text(
-                        text = "Sapiens",
-                        style = MaterialTheme.typography.h2
-                    )
-                    Spacer(modifier = Modifier.height(10.dp))
-                    Text(
-                        text = "Yuval Noah Harari",
-                        color = Grey
-                    )
-                }
-                Spacer(modifier = Modifier.height(25.dp))
-                Card(
-                    border = BorderStroke(
-                        width = 1.dp,
-                        color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
-                    ),
-                    elevation = 0.dp
-                ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(IntrinsicSize.Min)
-                            .padding(horizontal = 20.dp, vertical = 15.dp),
-                        horizontalArrangement = Arrangement.SpaceAround
-                    ) {
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text(
-                                text = "Rating",
-                                style = MaterialTheme.typography.caption.copy(
+            volumeDetailUiState.apply {
+                when {
+                    loading == false && errorMessage == null -> {
+                        Column(modifier = Modifier.padding(20.dp)) {
+                            Column(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Image(
+                                    modifier = Modifier
+                                        .size(width = 200.dp, height = 270.dp)
+                                        .clip(MaterialTheme.shapes.large),
+                                    painter = rememberAsyncImagePainter(
+                                        volumeInfo.imageLinks?.thumbnail
+                                            ?: Constants.URL.DEFAULT_BOOK_IMAGE
+                                    ),
+                                    contentScale = ContentScale.FillBounds,
+                                    contentDescription = "Volume cover"
+                                )
+                                Spacer(modifier = Modifier.height(20.dp))
+                                Text(
+                                    text = volumeInfo.title,
+                                    style = MaterialTheme.typography.h2
+                                )
+                                Spacer(modifier = Modifier.height(10.dp))
+                                Text(
+                                    text = volumeInfo.authors?.get(0) ?: "-",
                                     color = Grey
                                 )
-                            )
-                            Spacer(modifier = Modifier.height(5.dp))
+                            }
+                            Spacer(modifier = Modifier.height(25.dp))
+                            Card(
+                                border = BorderStroke(
+                                    width = 1.dp,
+                                    color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
+                                ),
+                                elevation = 0.dp
+                            ) {
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(IntrinsicSize.Min)
+                                        .padding(horizontal = 20.dp, vertical = 15.dp),
+                                    horizontalArrangement = Arrangement.SpaceAround
+                                ) {
+                                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                        Text(
+                                            text = "Rating",
+                                            style = MaterialTheme.typography.caption.copy(
+                                                color = Grey
+                                            )
+                                        )
+                                        Spacer(modifier = Modifier.height(5.dp))
+                                        Text(
+                                            text = volumeInfo.averageRating.let {
+                                                if (it == null) "-" else "$it"
+                                            },
+                                            style = MaterialTheme.typography.body1.copy(
+                                                color = MaterialTheme.colors.primary,
+                                                fontWeight = FontWeight.SemiBold
+                                            )
+                                        )
+                                    }
+                                    Divider(modifier = Modifier.fillMaxHeight().width(1.dp))
+                                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                        Text(
+                                            text = "Number of pages",
+                                            style = MaterialTheme.typography.caption.copy(
+                                                color = Grey
+                                            )
+                                        )
+                                        Spacer(modifier = Modifier.height(5.dp))
+                                        Text(
+                                            text = volumeInfo.pageCount.let {
+                                                if (it == null) "-" else "$it"
+                                            },
+                                            style = MaterialTheme.typography.body1.copy(
+                                                color = MaterialTheme.colors.primary,
+                                                fontWeight = FontWeight.SemiBold
+                                            )
+                                        )
+                                    }
+                                    Divider(modifier = Modifier.fillMaxHeight().width(1.dp))
+                                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                        Text(
+                                            text = "Language",
+                                            style = MaterialTheme.typography.caption.copy(
+                                                color = Grey
+                                            )
+                                        )
+                                        Spacer(modifier = Modifier.height(5.dp))
+                                        Text(
+                                            text = volumeInfo.language.uppercase(),
+                                            style = MaterialTheme.typography.body1.copy(
+                                                color = MaterialTheme.colors.primary,
+                                                fontWeight = FontWeight.SemiBold
+                                            )
+                                        )
+                                    }
+                                }
+                            }
+                            Spacer(modifier = Modifier.height(25.dp))
                             Text(
-                                text = "4.2",
-                                style = MaterialTheme.typography.body1.copy(
-                                    color = MaterialTheme.colors.primary,
-                                    fontWeight = FontWeight.SemiBold
-                                )
+                                text = "Description",
+                                style = MaterialTheme.typography.h3
                             )
-                        }
-                        Divider(modifier = Modifier.fillMaxHeight().width(1.dp))
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text(
-                                text = "Number of pages",
-                                style = MaterialTheme.typography.caption.copy(
-                                    color = Grey
-                                )
-                            )
-                            Spacer(modifier = Modifier.height(5.dp))
-                            Text(
-                                text = "450",
-                                style = MaterialTheme.typography.body1.copy(
-                                    color = MaterialTheme.colors.primary,
-                                    fontWeight = FontWeight.SemiBold
-                                )
-                            )
-                        }
-                        Divider(modifier = Modifier.fillMaxHeight().width(1.dp))
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text(
-                                text = "Language",
-                                style = MaterialTheme.typography.caption.copy(
-                                    color = Grey
-                                )
-                            )
-                            Spacer(modifier = Modifier.height(5.dp))
-                            Text(
-                                text = "EN",
-                                style = MaterialTheme.typography.body1.copy(
-                                    color = MaterialTheme.colors.primary,
-                                    fontWeight = FontWeight.SemiBold
-                                )
-                            )
+                            Spacer(modifier = Modifier.height(20.dp))
+                            Text(text = volumeInfo.description ?: "-")
                         }
                     }
                 }
-                Spacer(modifier = Modifier.height(25.dp))
-                Text(
-                    text = "Description",
-                    style = MaterialTheme.typography.h3
-                )
-                Spacer(modifier = Modifier.height(20.dp))
-                Text(
-                    text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut felis libero, lacinia at nulla ut, scelerisque hendrerit est. Vivamus ac volutpat lorem. Curabitur feugiat turpis vitae lorem bibendum dapibus. Quisque cursus, ante a tincidunt porta, tellus purus lobortis eros, in bibendum nunc felis sit amet metus."
-                )
             }
         }
     }
