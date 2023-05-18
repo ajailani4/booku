@@ -102,48 +102,48 @@ fun HomeScreen(
 
                         loading == false && errorMessage == null -> {
                             VolumeCategorySection(
+                                scaffoldState = scaffoldState,
                                 title = "Fiction",
                                 volumes = fictionVolumes,
-                                onNavigateToVolumeList = {
+                                onSeeMoreClicked = {
                                     onNavigateToVolumeList("subject:fiction")
                                 },
-                                scaffoldState = scaffoldState
                             )
                             Spacer(modifier = Modifier.height(25.dp))
                             VolumeCategorySection(
+                                scaffoldState = scaffoldState,
                                 title = "Science",
                                 volumes = scienceVolumes,
-                                onNavigateToVolumeList = {
+                                onSeeMoreClicked = {
                                     onNavigateToVolumeList("subject:science")
                                 },
-                                scaffoldState = scaffoldState
                             )
                             Spacer(modifier = Modifier.height(25.dp))
                             VolumeCategorySection(
+                                scaffoldState = scaffoldState,
                                 title = "Technology",
                                 volumes = technologyVolumes,
-                                onNavigateToVolumeList = {
+                                onSeeMoreClicked = {
                                     onNavigateToVolumeList("subject:technology")
                                 },
-                                scaffoldState = scaffoldState
                             )
                             Spacer(modifier = Modifier.height(25.dp))
                             VolumeCategorySection(
+                                scaffoldState = scaffoldState,
                                 title = "Social",
                                 volumes = socialVolumes,
-                                onNavigateToVolumeList = {
+                                onSeeMoreClicked = {
                                     onNavigateToVolumeList("subject:social")
                                 },
-                                scaffoldState = scaffoldState
                             )
                             Spacer(modifier = Modifier.height(25.dp))
                             VolumeCategorySection(
+                                scaffoldState = scaffoldState,
                                 title = "Business",
                                 volumes = businessVolumes,
-                                onNavigateToVolumeList = {
+                                onSeeMoreClicked = {
                                     onNavigateToVolumeList("subject:business")
                                 },
-                                scaffoldState = scaffoldState
                             )
                             Spacer(modifier = Modifier.height(25.dp))
                         }
