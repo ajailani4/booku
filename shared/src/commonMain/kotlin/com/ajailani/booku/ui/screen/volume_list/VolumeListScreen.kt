@@ -81,8 +81,8 @@ fun VolumeListScreen(
                             items(it) { volume ->
                                 VolumeItem(
                                     volume = volume,
-                                    width = 120.dp,
-                                    height = 225.dp,
+                                    width = 110.dp,
+                                    height = 220.dp,
                                     onClick = {}
                                 )
                             }
