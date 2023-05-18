@@ -22,7 +22,7 @@ import com.ajailani.booku.ui.common.component.VolumeItem
 @Composable
 actual fun VolumeCategorySection(
     title: String,
-    volumes: List<Volume>?,
+    volumes: List<Volume>,
     onNavigateToVolumeList: () -> Unit,
     scaffoldState: ScaffoldState
 ) {
@@ -34,26 +34,24 @@ actual fun VolumeCategorySection(
     )
     Spacer(modifier = Modifier.height(15.dp))
 
-    volumes?.let {
-        Box {
-            LazyRow(
-                modifier = Modifier.padding(bottom = 20.dp),
-                state = lazyListState,
-                contentPadding = PaddingValues(horizontal = 10.dp)
-            ) {
-                items(it) { volume ->
-                    VolumeItem(
-                        volume = volume,
-                        onClick = {}
-                    )
-                }
+    Box {
+        LazyRow(
+            modifier = Modifier.padding(bottom = 20.dp),
+            state = lazyListState,
+            contentPadding = PaddingValues(horizontal = 10.dp)
+        ) {
+            items(volumes) {
+                VolumeItem(
+                    volume = it,
+                    onClick = {}
+                )
             }
-            HorizontalScrollbar(
-                modifier = Modifier
-                    .align(Alignment.BottomStart)
-                    .fillMaxWidth(),
-                adapter = rememberScrollbarAdapter(scrollState = lazyListState)
-            )
         }
+        HorizontalScrollbar(
+            modifier = Modifier
+                .align(Alignment.BottomStart)
+                .fillMaxWidth(),
+            adapter = rememberScrollbarAdapter(scrollState = lazyListState)
+        )
     }
 }

@@ -43,7 +43,7 @@ class HomeViewModel(
             homeUiState = homeUiState.copy(errorMessage = it.message)
         }.collect {
             homeUiState = when (it) {
-                is Resource.Success -> homeUiState.copy(fictionVolumes = it.data)
+                is Resource.Success -> homeUiState.copy(fictionVolumes = it.data ?: emptyList())
 
                 is Resource.Error -> homeUiState.copy(errorMessage = it.message)
             }
@@ -58,7 +58,7 @@ class HomeViewModel(
             homeUiState = homeUiState.copy(errorMessage = it.message)
         }.collect {
             homeUiState = when (it) {
-                is Resource.Success -> homeUiState.copy(scienceVolumes = it.data)
+                is Resource.Success -> homeUiState.copy(scienceVolumes = it.data ?: emptyList())
 
                 is Resource.Error -> homeUiState.copy(errorMessage = it.message)
             }
@@ -73,7 +73,7 @@ class HomeViewModel(
             homeUiState = homeUiState.copy(errorMessage = it.message)
         }.collect {
             homeUiState = when (it) {
-                is Resource.Success -> homeUiState.copy(technologyVolumes = it.data)
+                is Resource.Success -> homeUiState.copy(technologyVolumes = it.data ?: emptyList())
 
                 is Resource.Error -> homeUiState.copy(errorMessage = it.message)
             }
@@ -88,7 +88,7 @@ class HomeViewModel(
             homeUiState = homeUiState.copy(errorMessage = it.message)
         }.collect {
             homeUiState = when (it) {
-                is Resource.Success -> homeUiState.copy(socialVolumes = it.data)
+                is Resource.Success -> homeUiState.copy(socialVolumes = it.data ?: emptyList())
 
                 is Resource.Error -> homeUiState.copy(errorMessage = it.message)
             }
@@ -103,7 +103,7 @@ class HomeViewModel(
             homeUiState = homeUiState.copy(errorMessage = it.message)
         }.collect {
             homeUiState = when (it) {
-                is Resource.Success -> homeUiState.copy(businessVolumes = it.data)
+                is Resource.Success -> homeUiState.copy(businessVolumes = it.data ?: emptyList())
 
                 is Resource.Error -> homeUiState.copy(errorMessage = it.message)
             }

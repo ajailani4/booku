@@ -42,7 +42,7 @@ class VolumeListViewModel(
                     volumeListUiState = when (it) {
                         is Resource.Success -> volumeListUiState.copy(
                             loading = false,
-                            volumes = it.data
+                            volumes = it.data ?: emptyList()
                         )
 
                         is Resource.Error -> volumeListUiState.copy(

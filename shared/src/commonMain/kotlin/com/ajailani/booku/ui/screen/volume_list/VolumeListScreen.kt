@@ -72,20 +72,18 @@ fun VolumeListScreen(
                 }
 
                 loading == false && errorMessage == null -> {
-                    volumes?.let {
-                        LazyVerticalGrid(
-                            columns = GridCells.Adaptive(minSize = 110.dp),
-                            contentPadding = PaddingValues(10.dp),
-                            verticalArrangement = Arrangement.spacedBy(20.dp)
-                        ) {
-                            items(it) { volume ->
-                                VolumeItem(
-                                    volume = volume,
-                                    width = 110.dp,
-                                    height = 220.dp,
-                                    onClick = {}
-                                )
-                            }
+                    LazyVerticalGrid(
+                        columns = GridCells.Adaptive(minSize = 110.dp),
+                        contentPadding = PaddingValues(10.dp),
+                        verticalArrangement = Arrangement.spacedBy(20.dp)
+                    ) {
+                        items(volumes) {
+                            VolumeItem(
+                                volume = it,
+                                width = 110.dp,
+                                height = 220.dp,
+                                onClick = {}
+                            )
                         }
                     }
                 }
