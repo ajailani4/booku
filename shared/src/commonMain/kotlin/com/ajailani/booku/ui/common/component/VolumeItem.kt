@@ -68,7 +68,7 @@ fun VolumeItem(
                 )
                 Spacer(modifier = Modifier.height(5.dp))
                 Text(
-                    text = volume.volumeInfo.authors[0],
+                    text = volume.volumeInfo.authors?.get(0) ?: "-",
                     style = MaterialTheme.typography.body2.copy(
                         color = Grey
                     ),

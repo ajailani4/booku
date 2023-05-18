@@ -13,7 +13,7 @@ data class VolumeDto(
 @Serializable
 data class VolumeInfoDto(
     val title: String,
-    val authors: List<String>,
+    val authors: List<String>? = null,
     val description: String? = null,
     val pageCount: Int? = null,
     val averageRating: Float? = null,
