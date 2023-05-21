@@ -38,6 +38,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.ajailani.booku.ui.common.component.HtmlText
 import com.ajailani.booku.ui.theme.Grey
 import com.ajailani.booku.util.Constants
 import com.seiko.imageloader.rememberAsyncImagePainter
@@ -199,7 +200,7 @@ fun VolumeDetailScreen(
                                     style = MaterialTheme.typography.h3
                                 )
                                 Spacer(modifier = Modifier.height(20.dp))
-                                Text(text = volumeInfo.description ?: "-")
+                                HtmlText(text = volumeInfo.description ?: "-")
                             }
                         }
                     }
