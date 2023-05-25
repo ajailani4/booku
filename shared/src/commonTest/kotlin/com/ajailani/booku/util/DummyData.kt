@@ -5,17 +5,19 @@ import com.ajailani.booku.domain.model.Volume
 import com.ajailani.booku.domain.model.VolumeInfo
 
 object DummyData {
-    val volume = Volume(
+    val volumeInfo = VolumeInfo(
+        title = "Test",
+        authors = listOf("George Zayvich"),
+        description = "This is a book",
+        pageCount = 100,
+        averageRating = 4.5f,
+        imageLinks = ImageLinks(thumbnail = "https://image.com"),
+        language = "en"
+    )
+
+    private val volume = Volume(
         id = "1",
-        volumeInfo = VolumeInfo(
-            title = "Test",
-            authors = listOf("George Zayvich"),
-            description = "This is a book",
-            pageCount = 100,
-            averageRating = 4.5f,
-            imageLinks = ImageLinks(thumbnail = "https://image.com"),
-            language = "en"
-        )
+        volumeInfo = volumeInfo
     )
 
     val volumes = listOf(volume, volume)
