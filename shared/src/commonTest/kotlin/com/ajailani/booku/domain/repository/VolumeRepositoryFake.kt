@@ -22,7 +22,10 @@ class VolumeRepositoryFake : VolumeRepository {
             ResourceType.Error -> flowOf(Resource.Error())
         }
 
-    override fun getVolumeDetail(id: String): Flow<Resource<VolumeInfo>> {
-        TODO("Not yet implemented")
-    }
+    override fun getVolumeDetail(id: String): Flow<Resource<VolumeInfo>> =
+        when (resourceType) {
+            ResourceType.Success -> flowOf(Resource.Success(DummyData.volumeInfo))
+
+            ResourceType.Error -> flowOf(Resource.Error())
+        }
 }
