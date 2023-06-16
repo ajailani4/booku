@@ -19,3 +19,26 @@ This app implements Clean Architecture which has three main layers, UI/Presentat
 1. View volumes/books by category, such as Fiction, Science, Technology, Social, and Business
 2. View volumes/books detail
 3. Search a volume/book
+
+
+## Preview
+
+### Android
+**Home**<br/>
+![Home](https://res.cloudinary.com/dkwoatrfe/image/upload/w_360,h_800/v1686911435/booku_android_home_kro7av.jpg)
+
+**Book List**<br/>
+![Book List](https://res.cloudinary.com/dkwoatrfe/image/upload/w_360,h_800/v1686911435/booku_android_search_uatxeq.jpg)
+
+**Book Detail**<br/>
+![Book Detail](https://res.cloudinary.com/dkwoatrfe/image/upload/w_360,h_800/v1686911434/booku_android_detail_pi5ueo.jpg)
+
+### Desktop (Windows)
+**Home**<br/>
+![Home](https://res.cloudinary.com/dkwoatrfe/image/upload/w_800,h_520/v1686911434/booku_desktop_home_iha17h.png)
+
+**Book List**<br/>
+![Book List](https://res.cloudinary.com/dkwoatrfe/image/upload/w_800,h_520/v1686911434/booku_desktop_search_h9lz5v.png)
+
+**Book Detail**<br/>
+![Book Detail](https://res.cloudinary.com/dkwoatrfe/image/upload/w_800,h_520/v1686911425/booku_desktop_detail_ybng2a.png)
