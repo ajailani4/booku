@@ -103,13 +103,14 @@ kotlin {
 
 android {
     namespace = "com.ajailani.booku"
-    compileSdk = 33
+    compileSdk = 34
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     sourceSets["main"].res.srcDirs("src/commonMain/resources")
 
     defaultConfig {
         minSdk = 24
+        version = 3
     }
 
     compileOptions {
